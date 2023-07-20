@@ -3,12 +3,16 @@
     <router-link :to="{ name: 'Home' }">Snazzy Fake Blog</router-link>
   </nav>
   <div class="container">
-    <router-view></router-view>
-    <div v-if="isLoading" >Loading...</div>
+    <Suspense>
+        <router-view>
+        </router-view>
+        <!-- <div v-if="isLoading" >Loading...</div> -->
+      </Suspense>
   </div>
 </template>
 
 <script setup>
+import { Suspense } from 'vue';
 import usePageRequests from './composables/usePageRequests'
 const {isLoading} = usePageRequests()
 </script>
